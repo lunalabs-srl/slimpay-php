@@ -3,7 +3,6 @@
     "description": "A simple PHP package to integrate the SlimPay checkout on your application that supports both iframe and redirect checkout",
     "license": "GPL-2.0-only",
     "type": "package",
-    "version": "0.1",
     "authors": [
         {
             "name": "Alessandro Orrù",
