@@ -76,13 +76,14 @@ class SlimPayPhp
 
 
     /**
-     * Returns the checkout Iframe HTML code or redirect to the checkout page.
+     * Prints the checkout Iframe HTML code or redirect to the checkout page.
      *
      * @param  object $response
-     * @return void
+     * @param  bool   $raw
+     * @return mixed
      * @throws SlimPayPhpException|GuzzleException
      */
-    public function showCheckoutPage(object $response): void
+    public function showCheckoutPage(object $response, bool $raw = false)
     {
         $resourceLinks = [
             'userApproval'     => $this->config['profileUri'].'/alps#user-approval',
@@ -95,9 +96,12 @@ class SlimPayPhp
             $link    = str_replace('{?mode}', '', $link);
             $encoded = $this->getResource($link, ['mode' => 'iframeembedded']);
             $html    = base64_decode($encoded->content);
+
+            if ($raw) return $html;
             echo $html;
 
         } else {
+            if ($raw) return $response->_links->{$resourceLinks['userApproval']}->href;
             header('Location: ' . $response->_links->{$resourceLinks['userApproval']}->href);
         }
     }
