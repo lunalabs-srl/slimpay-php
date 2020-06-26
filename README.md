@@ -1,5 +1,4 @@
 # SlimPay PHP
-
 A simple PHP package to integrate the **SlimPay checkout** on your application that supports both **iframe** and **redirect** checkout.
 
 <br />
