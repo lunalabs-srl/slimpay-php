@@ -117,4 +117,16 @@ class SlimPayPhp
     {
         return property_exists($response, '_links');
     }
+
+
+    /**
+     * Retrieves the given payment detail.
+     *
+     * @param  string $payment
+     * @return object
+     */
+    public function getPayment(string $payment): object
+    {
+        return $this->getResource($this->config['baseUri'].'/payments/'.$payment, []);
+    }
 }
